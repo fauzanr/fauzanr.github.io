@@ -1,3 +1,5 @@
+import { FC, ReactNode } from "react";
+
 export interface Server {
   id: string | number;
   name: string;
@@ -27,3 +29,5 @@ export interface Chat {
   channelId: Channel["id"];
   timestamp: Date;
 }
+
+export type FCC<P = {}> = FC<P & { children?: ReactNode }>;
