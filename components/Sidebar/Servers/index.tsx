@@ -7,7 +7,7 @@ const ServerItem = () => (
 const Servers = () => {
   return (
     <div className="h-full bg-bg1 flex flex-col">
-      <div className="flex flex-col gap-3 p-3 overflow-y-auto no-scrollbar">
+      <div className="flex flex-col gap-2 p-3 overflow-y-auto no-scrollbar">
         <ServerItem />
         <hr className="border-gray-700 mx-2" />
         <ServerItem />

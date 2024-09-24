@@ -1,5 +1,7 @@
 import React from "react";
 import Sidebar from "../Sidebar";
+import Topbar from "./Topbar";
+import ChatRoom from "./ChatRoom";
 
 const MainContent = () => {
   return (
@@ -7,7 +9,10 @@ const MainContent = () => {
       <div className="w-60">
         <Sidebar />
       </div>
-      <div className="flex-auto">hola</div>
+      <div className="flex flex-col flex-auto">
+        <Topbar />
+        <ChatRoom />
+      </div>
     </div>
   );
 };
