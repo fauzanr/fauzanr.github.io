@@ -9,7 +9,7 @@ const Member: FCC<{ online?: boolean }> = ({ online, children }) => (
       <div className="relative">
         <div className="rounded-full bg-slate-100 h-9 w-9"></div>
         {online && (
-          <span className="absolute rounded-full h-3 w-3 bg-green -right-1 -bottom-1 border-4 border-bg2 box-content"></span>
+          <span className="absolute rounded-full h-2 w-2 bg-green -right-1 -bottom-1 border-4 border-bg2 box-content"></span>
         )}
       </div>
       <div>{children}</div>

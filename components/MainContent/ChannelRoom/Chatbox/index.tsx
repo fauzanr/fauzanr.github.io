@@ -1,25 +1,39 @@
 import Clickable from "@/components/Clickable";
-import { repeat } from "@/lib/utils";
 import React from "react";
 
 const Chatbox = () => {
   return (
-    <div className="bg-bg3 pb-4 px-3">
-      <div className="bg-gray-600 p-2 flex rounded-lg">
+    <div className="flex gap-2 bg-bg3 pb-4 px-3">
+      <div className="bg-gray-700 p-2 flex flex-auto rounded-lg">
         <Clickable noBG className="flex-none flex justify-center w-10">
-          <i className="ri-hashtag text-xl"></i>
+          <i className="ri-add-circle-fill text-xl"></i>
         </Clickable>
         <input
           placeholder="Message #channel"
-          className="outline-none resize-none min-w-0 w-full -my-2 py-2 no-scrollbar bg-gray-600"
+          className="outline-none resize-none min-w-0 w-full -my-2 py-2 no-scrollbar text-wh1 bg-gray-700"
         />
         <div className="flex gap-3">
-          {repeat(4, () => (
-            <Clickable noBG className="flex-none">
-              <i className="ri-hashtag text-xl"></i>
-            </Clickable>
-          ))}
+          <Clickable noBG className="flex-none">
+            <i className="ri-gift-2-fill text-xl"></i>
+          </Clickable>
+          <Clickable noBG className="flex-none">
+            <i className="ri-file-gif-fill text-xl"></i>
+          </Clickable>
+          <Clickable noBG className="flex-none">
+            <i className="ri-emoji-sticker-fill text-xl"></i>
+          </Clickable>
+          <Clickable noBG className="flex-none">
+            <i className="ri-emotion-fill text-xl"></i>
+          </Clickable>
         </div>
+      </div>
+      <div className="bg-gray-700 flex flex-none rounded-lg">
+        <Clickable
+          noBG
+          className="h-full w-10 flex items-center justify-center"
+        >
+          <i className="ri-shapes-fill text-xl"></i>
+        </Clickable>
       </div>
     </div>
   );

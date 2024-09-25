@@ -65,7 +65,7 @@ const Channels = () => {
   return (
     <div className="h-full flex flex-col rounded-tl-lg bg-bg2">
       <div className="relative flex-none h-32 rounded-tl-lg border-none bg-slate-500">
-        <div className="absolute left-0 right-0 p-2">aloga</div>
+        <div className="absolute left-0 right-0 p-2">Server Name</div>
       </div>
       <div className="my-3">
         <ChannelItem Icon={<i className="ri-quote-text"></i>}>oioi</ChannelItem>
