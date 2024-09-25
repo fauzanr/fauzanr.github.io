@@ -19,7 +19,7 @@ const MainContent = () => {
             <div className="flex-none">
               <Topbar />
             </div>
-            <div className="flex flex-auto overflow-hidden">
+            <div className="flex-auto overflow-hidden">
               <ChannelRoom />
             </div>
           </div>

@@ -5,15 +5,13 @@ import MemberTab from "./MemberTab";
 
 const ChannelRoom = () => {
   return (
-    <div className="flex">
-      <div className="flex flex-auto">
-        <div className="flex flex-col">
-          <div className="flex-auto">
-            <ChatRoom />
-          </div>
-          <div className="flex-none">
-            <Chatbox />
-          </div>
+    <div className="flex h-full">
+      <div className="flex-auto flex flex-col">
+        <div className="flex-auto">
+          <ChatRoom />
+        </div>
+        <div className="flex-none">
+          <Chatbox />
         </div>
       </div>
       <div className="flex-none">
