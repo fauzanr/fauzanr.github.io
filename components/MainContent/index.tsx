@@ -1,10 +1,8 @@
 import React from "react";
-import Sidebar from "../Sidebar";
+import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
-import ChatRoom from "./ChatRoom";
-import Chatbox from "./Chatbox";
-import MemberTab from "./MemberTab";
-import Servers from "../Sidebar/Servers";
+import Servers from "./Servers";
+import ChannelRoom from "./ChannelRoom";
 
 const MainContent = () => {
   return (
@@ -22,17 +20,7 @@ const MainContent = () => {
               <Topbar />
             </div>
             <div className="flex flex-auto overflow-hidden">
-              <div className="flex flex-col flex-auto">
-                <div className="flex-auto">
-                  <ChatRoom />
-                </div>
-                <div className="flex-none">
-                  <Chatbox />
-                </div>
-              </div>
-              <div className="flex-none">
-                <MemberTab />
-              </div>
+              <ChannelRoom />
             </div>
           </div>
         </div>
