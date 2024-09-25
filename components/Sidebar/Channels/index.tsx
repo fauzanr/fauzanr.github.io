@@ -63,24 +63,26 @@ const ChannelGroup: FCC<{ title: string }> = ({ title, children }) => {
 
 const Channels = () => {
   return (
-    <div className="h-full rounded-tl-lg bg-bg2">
-      <div className="relative h-32 rounded-tl-lg border-none bg-slate-500">
+    <div className="h-full flex flex-col rounded-tl-lg bg-bg2">
+      <div className="relative flex-none h-32 rounded-tl-lg border-none bg-slate-500">
         <div className="absolute left-0 right-0 p-2">aloga</div>
       </div>
       <div className="my-3">
         <ChannelItem Icon={<i className="ri-quote-text"></i>}>oioi</ChannelItem>
       </div>
       <hr className="border-gray-700 mx-2" />
-      {repeat(3, (idx) => (
-        <ChannelGroup title={`aloha ${idx}`}>
-          {repeat(3, (idxx) => (
-            <ChannelItem showInvite showSettings>
-              channel{idx}
-              {idxx}
-            </ChannelItem>
-          ))}
-        </ChannelGroup>
-      ))}
+      <div className="overflow-y-auto">
+        {repeat(3, (idx) => (
+          <ChannelGroup title={`aloha ${idx}`}>
+            {repeat(3, (idxx) => (
+              <ChannelItem showInvite showSettings>
+                channel{idx}
+                {idxx}
+              </ChannelItem>
+            ))}
+          </ChannelGroup>
+        ))}
+      </div>
     </div>
   );
 };
