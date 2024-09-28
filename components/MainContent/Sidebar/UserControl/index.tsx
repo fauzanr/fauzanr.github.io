@@ -11,7 +11,7 @@ const UserControl = () => {
         </div>
         <div className="flex flex-col ml-2">
           <span className="leading-none text-xs text-white font-semibold text-nowrap">
-            FauzanRianda
+            Fauzan Rianda
           </span>
           <span className="group-hover:hidden leading-none text-xs text-wh2">
             online
