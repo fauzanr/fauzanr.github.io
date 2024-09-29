@@ -5,7 +5,7 @@ export interface Server {
   name: string;
 }
 
-export interface ChannelCategory {
+export interface ChannelGroup {
   id: string | number;
   name: string;
   serverId: Server["id"];
@@ -17,8 +17,9 @@ export interface Channel {
   id: string;
   name: string;
   serverId: Server["id"];
-  channelCategory: ChannelCategory["id"];
+  channelGroup: ChannelGroup["id"];
   type: ChannelType;
+  chats: Chat[];
 }
 
 export interface Chat {

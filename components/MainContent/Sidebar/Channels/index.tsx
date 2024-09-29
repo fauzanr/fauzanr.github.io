@@ -55,7 +55,9 @@ const ChannelGroup: FCC<{ title: string }> = ({ title, children }) => {
               <i className="ri-arrow-right-s-line"></i>
             )}
           </span>
-          <div className="flex-auto">{title}</div>
+          <div className="flex-auto text-nowrap text-ellipsis overflow-hidden">
+            {title}
+          </div>
           <span className="flex-none font-bold hidden group-hover:block">
             <i className="ri-add-line"></i>
           </span>
@@ -67,7 +69,7 @@ const ChannelGroup: FCC<{ title: string }> = ({ title, children }) => {
 };
 
 const Channels = () => {
-  const channels = useServerStore((state) => state.channels);
+  const { channels, channelGroups } = useServerStore((state) => state);
   const setCurrentChannel = useChannelStore((state) => state.setCurrentChannel);
 
   return (
@@ -80,26 +82,20 @@ const Channels = () => {
       </div>
       <hr className="border-gray-700 mx-2" />
       <div className="overflow-y-auto">
-        <ChannelGroup title="default">
-          {channels.map((channel) => (
-            <ChannelItem
-              key={channel.id}
-              showInvite
-              showSettings
-              onClick={() => setCurrentChannel(channel)}
-            >
-              {channel.name}
-            </ChannelItem>
-          ))}
-        </ChannelGroup>
-        {repeat(3, (idx) => (
-          <ChannelGroup title={`aloha ${idx}`}>
-            {repeat(3, (idxx) => (
-              <ChannelItem showInvite showSettings>
-                channel{idx}
-                {idxx}
-              </ChannelItem>
-            ))}
+        {channelGroups.map((cg) => (
+          <ChannelGroup key={cg.id} title={cg.name}>
+            {channels
+              .filter((channel) => channel.channelGroup === cg.id)
+              .map((channel) => (
+                <ChannelItem
+                  key={channel.id}
+                  showInvite
+                  showSettings
+                  onClick={() => setCurrentChannel(channel)}
+                >
+                  {channel.name}
+                </ChannelItem>
+              ))}
           </ChannelGroup>
         ))}
       </div>
