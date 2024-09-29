@@ -24,9 +24,9 @@ export interface Channel {
 export interface Chat {
   id: string;
   username: string;
-  userprofile?: string;
   message: string;
   channelId: Channel["id"];
+  isAdmin?: boolean;
   timestamp: Date;
 }
 

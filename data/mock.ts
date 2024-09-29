@@ -1,5 +1,5 @@
 import { genID } from "@/lib/utils";
-import { Channel, ChannelCategory, Server } from "./types";
+import { Channel, ChannelCategory, Chat, Server } from "./types";
 
 export const currentServerId = "5ac42f35-6258-48bf-ab07-5ab860208955";
 
@@ -185,5 +185,49 @@ export const channels: Channel[] = [
     channelCategory: channelCategory[3].id,
     serverId: currentServerId,
     type: "voice",
+  },
+];
+
+export const mockChats: Chat[] = [
+  {
+    id: genID(),
+    username: "fauzanr",
+    channelId: 0,
+    timestamp: new Date(),
+    isAdmin: true,
+    message: "hola",
+  },
+  {
+    id: genID(),
+    username: "fauzanr",
+    channelId: 0,
+    timestamp: new Date(),
+    isAdmin: true,
+    message: "hola",
+  },
+  {
+    id: genID(),
+    username: "fauzanr",
+    channelId: 0,
+    timestamp: new Date(),
+    isAdmin: true,
+    message:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto illo nesciunt quod itaque quia commodi, in ab natus quos totam repudiandae perferendis autem. Nesciunt quae ipsum, ea exercitationem beatae assumenda!",
+  },
+  {
+    id: genID(),
+    username: "fauzanr",
+    channelId: 0,
+    timestamp: new Date(),
+    isAdmin: true,
+    message: "hola",
+  },
+  {
+    id: genID(),
+    username: "fauzanr",
+    channelId: 0,
+    timestamp: new Date(),
+    isAdmin: true,
+    message: "hola",
   },
 ];

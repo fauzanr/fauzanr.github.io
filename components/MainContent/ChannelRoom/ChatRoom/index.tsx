@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Chat from "./Chat";
 import { cn } from "@/lib/utils";
+import { useChatStore } from "@/data/store";
 
 const Welcome = () => (
   <div className="flex flex-col gap-2 px-3 my-10">
@@ -15,13 +16,14 @@ const Welcome = () => (
 );
 
 const ChatRoom = () => {
+  const chats = useChatStore((state) => state.chats);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    scrollRef.current?.scrollTo({ top: 100000 });
+    scrollRef.current?.scrollTo({ top: scrollRef.current?.scrollHeight });
     setShowContent(true);
-  }, []);
+  }, [chats]);
 
   return (
     <div className="bg-bg3 h-full">
@@ -34,20 +36,9 @@ const ChatRoom = () => {
         <span className="mt-auto"></span>
         <Welcome />
         <hr className="border-gray-700 mx-2 mb-5" />
-        <Chat>hola</Chat>
-        <Chat>hola</Chat>
-        <Chat>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto
-          illo nesciunt quod itaque quia commodi, in ab natus quos totam
-          repudiandae perferendis autem. Nesciunt quae ipsum, ea exercitationem
-          beatae assumenda!
-        </Chat>
-        <Chat>hola</Chat>
-        <Chat>hola</Chat>
-        <Chat>hola</Chat>
-        <Chat>hola</Chat>
-        <Chat>hola</Chat>
-        <Chat>hola</Chat>
+        {chats.map((chat) => (
+          <Chat chat={chat} />
+        ))}
       </div>
     </div>
   );
