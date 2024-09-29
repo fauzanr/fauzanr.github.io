@@ -56,3 +56,20 @@ export const useServerStore = create<ServerState>((set) => ({
   channels: mockChannels,
   setCurrentServer: (server: Server) => set(() => ({ server })),
 }));
+
+type ToggleableUI = "showMemberTab" | "showSidebar";
+
+type ToggleableUIState = {
+  [key in ToggleableUI]: boolean;
+};
+
+interface UIState extends ToggleableUIState {
+  toggleUI: (ui: ToggleableUI, v?: boolean) => void;
+}
+
+export const useUIStore = create<UIState>((set) => ({
+  showMemberTab: true,
+  showSidebar: true,
+  toggleUI: (ui: ToggleableUI, value?: boolean) =>
+    set((state) => ({ [ui]: typeof value === "boolean" ? value : !state[ui] })),
+}));

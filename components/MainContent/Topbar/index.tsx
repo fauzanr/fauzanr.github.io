@@ -1,7 +1,5 @@
-"use client";
-
 import Clickable from "@/components/Clickable";
-import { useChannelStore } from "@/data/store";
+import { useChannelStore, useUIStore } from "@/data/store";
 import React from "react";
 
 const SearchInput = () => (
@@ -18,9 +16,19 @@ const SearchInput = () => (
 
 const Topbar = () => {
   const channelName = useChannelStore((state) => state.channel.name);
+  const { showSidebar, toggleUI } = useUIStore((state) => state);
 
   return (
     <div className="bg-bg3 h-12 border-bg2 border-b-2 flex items-center px-3">
+      <div className="flex-none">
+        <Clickable noBG onClick={() => toggleUI("showSidebar")}>
+          {showSidebar ? (
+            <i className="ri-menu-fold-3-fill text-wh2 text-2xl mr-2"></i>
+          ) : (
+            <i className="ri-menu-unfold-3-fill text-wh2 text-2xl mr-2"></i>
+          )}
+        </Clickable>
+      </div>
       <div className="flex-none">
         <i className="ri-hashtag text-wh2 text-2xl mr-2"></i>
       </div>
@@ -37,7 +45,7 @@ const Topbar = () => {
         <Clickable noBG>
           <i className="ri-pushpin-fill text-2xl"></i>
         </Clickable>
-        <Clickable noBG>
+        <Clickable noBG onClick={() => toggleUI("showMemberTab")}>
           <i className="ri-group-fill text-2xl"></i>
         </Clickable>
 

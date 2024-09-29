@@ -51,12 +51,12 @@ export const mockChannelGroup: ChannelGroup[] = [
   },
   {
     id: genID(),
-    name: "VOICE CHANNELS",
+    name: "EXPERIENCES",
     serverId: currentServerId,
   },
   {
     id: genID(),
-    name: "CODING",
+    name: "TOOLS",
     serverId: currentServerId,
   },
   {

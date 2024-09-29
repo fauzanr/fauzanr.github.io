@@ -1,5 +1,3 @@
-"use client";
-
 import Clickable from "@/components/Clickable";
 import { useChannelStore } from "@/data/store";
 import React, { useEffect, useRef } from "react";

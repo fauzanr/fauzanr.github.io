@@ -1,5 +1,3 @@
-"use client";
-
 import Clickable from "@/components/Clickable";
 import { useChannelStore, useServerStore } from "@/data/store";
 import { FCC } from "@/data/types";

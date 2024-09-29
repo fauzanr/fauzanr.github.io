@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import Chat from "./Chat";
 import { cn } from "@/lib/utils";

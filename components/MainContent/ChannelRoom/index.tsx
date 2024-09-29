@@ -2,8 +2,10 @@ import React from "react";
 import ChatRoom from "./ChatRoom";
 import Chatbox from "./Chatbox";
 import MemberTab from "./MemberTab";
+import { useUIStore } from "@/data/store";
 
 const ChannelRoom = () => {
+  const showMemberTab = useUIStore((state) => state.showMemberTab);
   return (
     <div className="flex h-full">
       <div className="flex-auto flex flex-col">
@@ -14,9 +16,7 @@ const ChannelRoom = () => {
           <Chatbox />
         </div>
       </div>
-      <div className="flex-none">
-        <MemberTab />
-      </div>
+      <div className="flex-none">{showMemberTab && <MemberTab />}</div>
     </div>
   );
 };
