@@ -17,7 +17,7 @@ const SearchInput = () => (
 );
 
 const Topbar = () => {
-  const channelName = useChannelStore((state) => state.channelName);
+  const channelName = useChannelStore((state) => state.channel.name);
 
   return (
     <div className="bg-bg3 h-12 border-bg2 border-b-2 flex items-center px-3">

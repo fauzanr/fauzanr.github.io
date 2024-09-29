@@ -5,20 +5,19 @@ import { useChannelStore } from "@/data/store";
 import React, { useEffect, useRef } from "react";
 
 const ChatInput = () => {
-  const channelId = useChannelStore((state) => state.channelId);
-  const channelName = useChannelStore((state) => state.channelName);
+  const { id, name } = useChannelStore((state) => state.channel);
   const sendMessage = useChannelStore((state) => state.sendMessage);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     inputRef.current?.focus();
-  }, [channelId]);
+  }, [id]);
 
   return (
     <input
       ref={inputRef}
-      key={channelId}
-      placeholder={`Message #${channelName}`}
+      key={id}
+      placeholder={`Message #${name}`}
       className="outline-none resize-none min-w-8 w-full no-scrollbar text-wh1 bg-gray-700"
       onKeyUp={(e) => {
         const message = e.currentTarget.value?.trim();
@@ -33,7 +32,7 @@ const ChatInput = () => {
 
 const Chatbox = () => {
   return (
-    <div className="flex gap-2 bg-bg3 pb-4 px-3">
+    <div className="flex gap-2 bg-bg3 pb-5 px-3">
       <div className="bg-gray-700 flex flex-auto rounded-lg">
         <Clickable noBG className="flex-none flex justify-center py-2 px-4">
           <i className="ri-add-circle-fill text-xl"></i>

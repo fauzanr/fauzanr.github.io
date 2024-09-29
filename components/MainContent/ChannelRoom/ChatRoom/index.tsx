@@ -16,14 +16,14 @@ const Welcome = ({ channel }: { channel: string }) => (
 );
 
 const ChatRoom = () => {
-  const { channelId, channelName, chats } = useChannelStore((state) => state);
+  const { id, name, chats } = useChannelStore((state) => state.channel);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current?.scrollHeight });
     setShowContent(true);
-  }, [chats, channelId]);
+  }, [chats, id]);
 
   return (
     <div className="bg-bg3 h-full">
@@ -34,7 +34,7 @@ const ChatRoom = () => {
         })}
       >
         <span className="mt-auto"></span>
-        <Welcome channel={channelName} />
+        <Welcome channel={name} />
         <hr className="border-gray-700 mx-2 mb-5" />
         {chats.map((chat) => (
           <Chat chat={chat} />

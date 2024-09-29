@@ -1,12 +1,14 @@
 import { FC, ReactNode } from "react";
 
 export interface Server {
-  id: string | number;
+  id: string;
   name: string;
+  color: string;
+  pic?: string;
 }
 
 export interface ChannelGroup {
-  id: string | number;
+  id: string;
   name: string;
   serverId: Server["id"];
 }

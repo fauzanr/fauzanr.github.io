@@ -3,54 +3,43 @@ import { Channel, ChannelGroup, Server } from "./types";
 
 export const currentServerId = "5ac42f35-6258-48bf-ab07-5ab860208955";
 
-export const servers: Server[] = [
+export const myServer: Server = {
+  id: genID(),
+  name: "Fauzan Rianda",
+  color: "",
+  pic: "bg-profile-pic",
+};
+
+export const mockServers: Server[] = [
   {
-    id: "5a897416-87a5-4a38-bd1c-ea780606fb51",
-    name: "Cormier, Dietrich and Morissette",
+    id: genID(),
+    name: "cerulean",
+    color: "#98B2D1",
   },
   {
-    id: "d3cfdcfd-2845-401c-8144-62384bc1a800",
-    name: "Paucek Group",
+    id: genID(),
+    name: "fuchsia rose",
+    color: "#C74375",
   },
   {
-    id: currentServerId,
-    name: "Kautzer LLC",
+    id: genID(),
+    name: "true red",
+    color: "#BF1932",
   },
   {
-    id: "3a4551f0-598f-46c9-bc4b-f43b9a21bff0",
-    name: "Kunze, Larson and Strosin",
+    id: genID(),
+    name: "aqua sky",
+    color: "#7BC4C4",
   },
   {
-    id: "dec46a29-8eaa-4a2e-bc4d-8f70b2d16fa9",
-    name: "Parker Inc",
+    id: genID(),
+    name: "tigerlily",
+    color: "#E2583E",
   },
   {
-    id: "ec788797-b3f9-4b4f-848a-b70adb9c9d54",
-    name: "Brekke Group",
-  },
-  {
-    id: "e8628297-906a-465a-a232-425dc0055f77",
-    name: "Marvin, Pouros and Gorczany",
-  },
-  {
-    id: "a5a29297-44c7-4613-b94d-e11f8ea803d5",
-    name: "Altenwerth, Sawayn and Jaskolski",
-  },
-  {
-    id: "49777cd0-45ae-4532-a6f0-a056a411e34b",
-    name: "Roob-Ondricka",
-  },
-  {
-    id: "5a8d602a-414b-4a9e-bd1e-3668144d1289",
-    name: "Greenfelder-Cremin",
-  },
-  {
-    id: "07494412-9f41-4ab8-b855-475d57cb61d4",
-    name: "Ortiz and Sons",
-  },
-  {
-    id: "32bf131c-2e81-47ba-808f-85d2cb3000e5",
-    name: "Mueller-Ritchie",
+    id: genID(),
+    name: "blue turquoise",
+    color: "#53B0AE",
   },
 ];
 
@@ -90,7 +79,7 @@ export const mockChannels: Channel[] = [
     const channelId = genID();
     return {
       id: channelId,
-      name: "general",
+      name: "intro",
       channelGroup: mockChannelGroup[0].id,
       serverId: currentServerId,
       type: "text",

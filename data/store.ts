@@ -1,12 +1,10 @@
 import { genID } from "@/lib/utils";
 import { create } from "zustand";
-import { Channel, ChannelGroup, Chat } from "./types";
-import { mockChannelGroup, mockChannels } from "./mock";
+import { Channel, ChannelGroup, Chat, Server } from "./types";
+import { mockChannelGroup, mockChannels, myServer } from "./mock";
 
 interface ChannelState {
-  channelId: string;
-  channelName: string;
-  chats: Chat[];
+  channel: Channel;
   sendMessage: (m: string) => void;
   setCurrentChannel: (c: Channel) => void;
 }
@@ -14,11 +12,9 @@ interface ChannelState {
 const defaultChannel = mockChannels[1];
 
 export const useChannelStore = create<ChannelState>((set, get) => ({
-  channelId: defaultChannel.id,
-  channelName: defaultChannel.name,
-  chats: defaultChannel.chats,
+  channel: { ...defaultChannel },
   sendMessage: (m: string) => {
-    const currentChannelId = get().channelId;
+    const currentChannelId = get().channel.id;
     const newChat: Chat = {
       id: genID(),
       username: "guest🎖️",
@@ -28,32 +24,35 @@ export const useChannelStore = create<ChannelState>((set, get) => ({
       message: m,
     };
 
-    set((state) => ({ chats: [...state.chats, newChat] }));
+    set((state) => ({
+      channel: { ...state.channel, chats: [...state.channel.chats, newChat] },
+    }));
 
     // warning: mutate constant data
     setTimeout(() => {
       mockChannels.find((c) => c.id === currentChannelId)?.chats.push(newChat);
     }, 0);
   },
-  setCurrentChannel: (channel: Channel) => {
-    const current = get();
-    current.channelId = channel.id;
-    current.channelName = channel.name;
-    current.chats = mockChannels.find((c) => c.id === channel.id)?.chats || [];
-    set(() => ({ ...current }));
-  },
+  setCurrentChannel: (channel: Channel) => set(() => ({ channel })),
 }));
 
 interface ServerState {
-  serverId: string;
-  serverName: string;
+  server: Server;
   channelGroups: ChannelGroup[];
   channels: Channel[];
+  setCurrentServer: (s: Server) => void;
 }
 
+const defaultServer = myServer;
+
 export const useServerStore = create<ServerState>((set) => ({
-  serverId: genID(),
-  serverName: "Server 1",
+  server: {
+    id: defaultServer.id,
+    name: defaultServer.name,
+    color: defaultServer.color,
+    pic: defaultServer.pic,
+  },
   channelGroups: mockChannelGroup,
   channels: mockChannels,
+  setCurrentServer: (server: Server) => set(() => ({ server })),
 }));

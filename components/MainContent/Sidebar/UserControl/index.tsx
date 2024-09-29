@@ -10,8 +10,8 @@ const UserControl = () => {
           <span className="absolute rounded-full h-2 w-2 bg-green -right-1 -bottom-1 border-4 border-bg1 box-content"></span>
         </div>
         <div className="flex flex-col ml-2">
-          <span className="leading-none text-xs text-white font-semibold text-nowrap">
-            Fauzan Rianda
+          <span className="leading-none text-sm text-white font-semibold text-nowrap">
+            fauzanr
           </span>
           <span className="group-hover:hidden leading-none text-xs text-wh2">
             online
@@ -23,13 +23,13 @@ const UserControl = () => {
       </Clickable>
       <div className="flex flex-none text-wh2">
         <Clickable className="h-8 w-8 flex items-center justify-center">
-          <i className="ri-mic-fill text-xl"></i>
+          <i className="ri-mic-fill text-lg"></i>
         </Clickable>
         <Clickable className="h-8 w-8 flex items-center justify-center">
-          <i className="ri-headphone-fill text-xl"></i>
+          <i className="ri-headphone-fill text-lg"></i>
         </Clickable>
         <Clickable className="h-8 w-8 flex items-center justify-center">
-          <i className="ri-settings-5-fill text-xl"></i>
+          <i className="ri-settings-5-fill text-lg"></i>
         </Clickable>
       </div>
     </div>

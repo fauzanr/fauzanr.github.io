@@ -3,7 +3,7 @@
 import Clickable from "@/components/Clickable";
 import { useChannelStore, useServerStore } from "@/data/store";
 import { FCC } from "@/data/types";
-import { repeat } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import React, { ReactNode, useState } from "react";
 
 const ChannelItem: FCC<{
@@ -69,16 +69,26 @@ const ChannelGroup: FCC<{ title: string }> = ({ title, children }) => {
 };
 
 const Channels = () => {
-  const { channels, channelGroups } = useServerStore((state) => state);
+  const { channels, channelGroups, server } = useServerStore((state) => state);
   const setCurrentChannel = useChannelStore((state) => state.setCurrentChannel);
 
   return (
     <div className="h-full flex flex-col rounded-tl-lg bg-bg2">
-      <div className="relative flex-none h-32 rounded-tl-lg border-none bg-slate-500">
-        <div className="absolute left-0 right-0 p-2">Server Name</div>
+      <div
+        className={cn(
+          "relative flex-none h-32 rounded-tl-lg border-none bg-slate-500 bg-center bg-cover",
+          server.pic
+        )}
+        style={{ background: server.color }}
+      >
+        <div className="absolute left-0 right-0 p-2 text-wh1 text-xl font-bold">
+          {server.name}
+        </div>
       </div>
       <div className="my-3">
-        <ChannelItem Icon={<i className="ri-quote-text"></i>}>oioi</ChannelItem>
+        <ChannelItem Icon={<i className="ri-quote-text"></i>}>
+          Server
+        </ChannelItem>
       </div>
       <hr className="border-gray-700 mx-2" />
       <div className="overflow-y-auto">

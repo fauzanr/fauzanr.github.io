@@ -25,6 +25,10 @@ const config = {
         wh1: "#F2F3F5",
         wh2: "#B5BAC0",
       },
+      backgroundImage: {
+        "profile-pic":
+          "url('https://avatars.githubusercontent.com/u/28147405?v=4')",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
