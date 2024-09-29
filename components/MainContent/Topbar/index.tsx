@@ -1,4 +1,7 @@
+"use client";
+
 import Clickable from "@/components/Clickable";
+import { useChannelStore } from "@/data/store";
 import React from "react";
 
 const SearchInput = () => (
@@ -14,11 +17,15 @@ const SearchInput = () => (
 );
 
 const Topbar = () => {
+  const channelName = useChannelStore((state) => state.channelName);
+
   return (
     <div className="bg-bg3 h-12 border-bg2 border-b-2 flex items-center px-3">
-      <div className="flex flex-auto items-center overflow-x-hidden w-0">
+      <div className="flex-none">
         <i className="ri-hashtag text-wh2 text-2xl mr-2"></i>
-        <span className="text-white">general</span>
+      </div>
+      <div className="flex-auto text-white text-nowrap text-ellipsis overflow-hidden w-0">
+        {channelName}
       </div>
       <div className="flex flex-none items-center gap-3">
         <Clickable noBG>

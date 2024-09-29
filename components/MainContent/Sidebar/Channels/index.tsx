@@ -1,6 +1,7 @@
 "use client";
 
 import Clickable from "@/components/Clickable";
+import { useChannelStore, useServerStore } from "@/data/store";
 import { FCC } from "@/data/types";
 import { repeat } from "@/lib/utils";
 import React, { ReactNode, useState } from "react";
@@ -9,17 +10,21 @@ const ChannelItem: FCC<{
   Icon?: ReactNode;
   showSettings?: boolean;
   showInvite?: boolean;
+  onClick?: () => void;
 }> = ({
   Icon = <i className="ri-hashtag"></i>,
   showInvite,
   showSettings,
+  onClick,
   children,
 }) => {
   return (
-    <Clickable className="group mx-2 my-0.5 px-2 py-1">
+    <Clickable className="group mx-2 my-0.5 px-2 py-1" onClick={onClick}>
       <div className="flex items-center gap-1">
         <div className="flex-none text-wh2">{Icon}</div>
-        <div className="flex-auto">{children}</div>
+        <div className="flex-auto overflow-hidden text-nowrap text-ellipsis">
+          {children}
+        </div>
         <div className="flex-none hidden group-hover:block">
           {showInvite && (
             <i className="ri-user-add-fill text-wh2 hover:text-wh1"></i>
@@ -62,6 +67,9 @@ const ChannelGroup: FCC<{ title: string }> = ({ title, children }) => {
 };
 
 const Channels = () => {
+  const channels = useServerStore((state) => state.channels);
+  const setCurrentChannel = useChannelStore((state) => state.setCurrentChannel);
+
   return (
     <div className="h-full flex flex-col rounded-tl-lg bg-bg2">
       <div className="relative flex-none h-32 rounded-tl-lg border-none bg-slate-500">
@@ -72,6 +80,18 @@ const Channels = () => {
       </div>
       <hr className="border-gray-700 mx-2" />
       <div className="overflow-y-auto">
+        <ChannelGroup title="default">
+          {channels.map((channel) => (
+            <ChannelItem
+              key={channel.id}
+              showInvite
+              showSettings
+              onClick={() => setCurrentChannel(channel)}
+            >
+              {channel.name}
+            </ChannelItem>
+          ))}
+        </ChannelGroup>
         {repeat(3, (idx) => (
           <ChannelGroup title={`aloha ${idx}`}>
             {repeat(3, (idxx) => (

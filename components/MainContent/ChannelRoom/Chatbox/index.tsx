@@ -1,15 +1,25 @@
 "use client";
 
 import Clickable from "@/components/Clickable";
-import { useChatStore } from "@/data/store";
-import React from "react";
+import { useChannelStore } from "@/data/store";
+import React, { useEffect, useRef } from "react";
 
 const ChatInput = () => {
-  const sendMessage = useChatStore((state) => state.sendMessage);
+  const channelId = useChannelStore((state) => state.channelId);
+  const channelName = useChannelStore((state) => state.channelName);
+  const sendMessage = useChannelStore((state) => state.sendMessage);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [channelId]);
+
   return (
     <input
-      placeholder="Message #channel"
-      className="outline-none resize-none min-w-0 w-full no-scrollbar text-wh1 bg-gray-700"
+      ref={inputRef}
+      key={channelId}
+      placeholder={`Message #${channelName}`}
+      className="outline-none resize-none min-w-8 w-full no-scrollbar text-wh1 bg-gray-700"
       onKeyUp={(e) => {
         const message = e.currentTarget.value?.trim();
         if (e.key === "Enter" && message) {

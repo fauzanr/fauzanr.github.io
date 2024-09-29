@@ -14,7 +14,7 @@ export interface ChannelCategory {
 type ChannelType = "text" | "voice";
 
 export interface Channel {
-  id: string | number;
+  id: string;
   name: string;
   serverId: Server["id"];
   channelCategory: ChannelCategory["id"];

@@ -77,7 +77,7 @@ export const channelCategory: ChannelCategory[] = [
   },
 ];
 
-export const channels: Channel[] = [
+export const mockChannels: Channel[] = [
   {
     id: genID(),
     name: "welcome",
@@ -192,7 +192,7 @@ export const mockChats: Chat[] = [
   {
     id: genID(),
     username: "fauzanr",
-    channelId: 0,
+    channelId: mockChannels[1].id,
     timestamp: new Date(),
     isAdmin: true,
     message: "hola",
@@ -200,7 +200,7 @@ export const mockChats: Chat[] = [
   {
     id: genID(),
     username: "fauzanr",
-    channelId: 0,
+    channelId: mockChannels[1].id,
     timestamp: new Date(),
     isAdmin: true,
     message: "hola",
@@ -208,7 +208,7 @@ export const mockChats: Chat[] = [
   {
     id: genID(),
     username: "fauzanr",
-    channelId: 0,
+    channelId: mockChannels[1].id,
     timestamp: new Date(),
     isAdmin: true,
     message:
@@ -217,7 +217,7 @@ export const mockChats: Chat[] = [
   {
     id: genID(),
     username: "fauzanr",
-    channelId: 0,
+    channelId: mockChannels[1].id,
     timestamp: new Date(),
     isAdmin: true,
     message: "hola",
@@ -225,7 +225,7 @@ export const mockChats: Chat[] = [
   {
     id: genID(),
     username: "fauzanr",
-    channelId: 0,
+    channelId: mockChannels[1].id,
     timestamp: new Date(),
     isAdmin: true,
     message: "hola",
