@@ -12,3 +12,12 @@ export const repeat = (n: number, cb: (idx: number) => ReactNode) =>
   Array.from({ length: n }).map((_, idx) => (
     <Fragment key={idx}>{cb(idx)}</Fragment>
   ));
+
+export const getInitials = (name?: string) => {
+  if (typeof name !== "string") return "";
+
+  const names = name.split(" ").filter(Boolean);
+  const initials = names.map((part) => part.charAt(0).toUpperCase()).join("");
+
+  return initials;
+};

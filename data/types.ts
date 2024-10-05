@@ -1,12 +1,14 @@
 import { FC, ReactNode } from "react";
 
 export interface Server {
-  id: string | number;
+  id: string;
   name: string;
+  color: string;
+  pic?: string;
 }
 
-export interface ChannelCategory {
-  id: string | number;
+export interface ChannelGroup {
+  id: string;
   name: string;
   serverId: Server["id"];
 }
@@ -14,19 +16,20 @@ export interface ChannelCategory {
 type ChannelType = "text" | "voice";
 
 export interface Channel {
-  id: string | number;
+  id: string;
   name: string;
   serverId: Server["id"];
-  channelCategory: ChannelCategory["id"];
+  channelGroup: ChannelGroup["id"];
   type: ChannelType;
+  chats: Chat[];
 }
 
 export interface Chat {
   id: string;
   username: string;
-  userprofile?: string;
   message: string;
   channelId: Channel["id"];
+  isAdmin?: boolean;
   timestamp: Date;
 }
 

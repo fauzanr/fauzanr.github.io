@@ -1,4 +1,5 @@
 import Clickable from "@/components/Clickable";
+import { useChannelStore, useUIStore } from "@/data/store";
 import React from "react";
 
 const SearchInput = () => (
@@ -14,11 +15,31 @@ const SearchInput = () => (
 );
 
 const Topbar = () => {
+  const channel = useChannelStore((state) => state.channel);
+  const { showSidebar, toggleUI } = useUIStore((state) => state);
+
   return (
     <div className="bg-bg3 h-12 border-bg2 border-b-2 flex items-center px-3">
-      <div className="flex flex-auto items-center overflow-x-hidden w-0">
-        <i className="ri-hashtag text-wh2 text-2xl mr-2"></i>
-        <span className="text-white">general</span>
+      <div className="flex-none">
+        <Clickable noBG onClick={() => toggleUI("showSidebar")}>
+          {showSidebar ? (
+            <i className="ri-menu-fold-3-fill text-wh2 text-2xl mr-2"></i>
+          ) : (
+            <i className="ri-menu-unfold-3-fill text-wh2 text-2xl mr-2"></i>
+          )}
+        </Clickable>
+      </div>
+      <div className="flex flex-auto items-center">
+        {channel?.id && (
+          <>
+            <div className="flex-none">
+              <i className="ri-hashtag text-wh2 text-2xl mr-2"></i>
+            </div>
+            <div className="flex-auto text-white text-nowrap text-ellipsis overflow-hidden w-0">
+              {channel?.name}
+            </div>
+          </>
+        )}
       </div>
       <div className="flex flex-none items-center gap-3">
         <Clickable noBG>
@@ -30,7 +51,7 @@ const Topbar = () => {
         <Clickable noBG>
           <i className="ri-pushpin-fill text-2xl"></i>
         </Clickable>
-        <Clickable noBG>
+        <Clickable noBG onClick={() => toggleUI("showMemberTab")}>
           <i className="ri-group-fill text-2xl"></i>
         </Clickable>
 
