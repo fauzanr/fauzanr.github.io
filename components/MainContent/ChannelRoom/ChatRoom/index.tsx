@@ -35,7 +35,7 @@ const ChatRoom = () => {
         <Welcome channel={name} />
         <hr className="border-gray-700 mx-2 mb-5" />
         {chats?.map((chat) => (
-          <Chat chat={chat} />
+          <Chat key={chat.id} chat={chat} />
         ))}
       </div>
     </div>
