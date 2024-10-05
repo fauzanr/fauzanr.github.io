@@ -3,7 +3,7 @@ import { useChannelStore } from "@/data/store";
 import React, { useEffect, useRef } from "react";
 
 const ChatInput = () => {
-  const { id, name } = useChannelStore((state) => state.channel);
+  const { id, name } = useChannelStore((state) => state.channel) || {};
   const sendMessage = useChannelStore((state) => state.sendMessage);
   const inputRef = useRef<HTMLInputElement>(null);
 

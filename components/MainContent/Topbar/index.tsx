@@ -15,7 +15,7 @@ const SearchInput = () => (
 );
 
 const Topbar = () => {
-  const channelName = useChannelStore((state) => state.channel.name);
+  const channel = useChannelStore((state) => state.channel);
   const { showSidebar, toggleUI } = useUIStore((state) => state);
 
   return (
@@ -29,11 +29,17 @@ const Topbar = () => {
           )}
         </Clickable>
       </div>
-      <div className="flex-none">
-        <i className="ri-hashtag text-wh2 text-2xl mr-2"></i>
-      </div>
-      <div className="flex-auto text-white text-nowrap text-ellipsis overflow-hidden w-0">
-        {channelName}
+      <div className="flex flex-auto items-center">
+        {channel?.id && (
+          <>
+            <div className="flex-none">
+              <i className="ri-hashtag text-wh2 text-2xl mr-2"></i>
+            </div>
+            <div className="flex-auto text-white text-nowrap text-ellipsis overflow-hidden w-0">
+              {channel?.name}
+            </div>
+          </>
+        )}
       </div>
       <div className="flex flex-none items-center gap-3">
         <Clickable noBG>

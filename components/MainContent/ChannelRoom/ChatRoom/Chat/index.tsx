@@ -19,7 +19,9 @@ const Chat = ({ chat }: { chat: ChatType }) => {
           >
             {username}
           </span>
-          <span className="text-xs text-wh2">{date}</span>
+          <span className="text-xs text-wh2" suppressHydrationWarning>
+            {date}
+          </span>
         </div>
         <div className="text-wh1 text-sm">{message}</div>
       </div>

@@ -1,14 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 import Servers from "./Servers";
 import ChannelRoom from "./ChannelRoom";
-import { useUIStore } from "@/data/store";
+import { useServerStore, useUIStore } from "@/data/store";
+import { Channel } from "@/data/types";
 
-const MainContent = () => {
+const MainContent = ({ channels }: { channels: Channel[] }) => {
   const showSidebar = useUIStore((state) => state.showSidebar);
+  const setChannels = useServerStore((state) => state.setChannels);
+
+  useEffect(() => {
+    setChannels(channels);
+  }, [channels]);
 
   return (
     <div className="flex h-screen overflow-hidden">

@@ -1,20 +1,21 @@
 import { genID } from "@/lib/utils";
 import { create } from "zustand";
 import { Channel, ChannelGroup, Chat, Server } from "./types";
-import { mockChannelGroup, mockChannels, myServer } from "./mock";
+import { mockChannelGroup, myServer } from "./mock";
 
 interface ChannelState {
-  channel: Channel;
+  channel: Channel | null;
   sendMessage: (m: string) => void;
   setCurrentChannel: (c: Channel) => void;
 }
 
-const defaultChannel = mockChannels[1];
-
 export const useChannelStore = create<ChannelState>((set, get) => ({
-  channel: { ...defaultChannel },
+  channel: null,
   sendMessage: (m: string) => {
-    const currentChannelId = get().channel.id;
+    const { channel } = get();
+    if (channel == null) return;
+
+    const currentChannelId = channel.id;
     const newChat: Chat = {
       id: genID(),
       username: "guest🎖️",
@@ -24,13 +25,21 @@ export const useChannelStore = create<ChannelState>((set, get) => ({
       message: m,
     };
 
-    set((state) => ({
-      channel: { ...state.channel, chats: [...state.channel.chats, newChat] },
-    }));
+    const newChannel: Channel = {
+      ...channel,
+      chats: [...channel.chats, newChat],
+    };
+
+    set(() => ({ channel: newChannel }));
 
     // warning: mutate constant data
     setTimeout(() => {
-      mockChannels.find((c) => c.id === currentChannelId)?.chats.push(newChat);
+      useServerStore.setState(({ channels }) => {
+        const newChannels = channels.map((c) =>
+          c.id === currentChannelId ? newChannel : c
+        );
+        return { channels: newChannels };
+      });
     }, 0);
   },
   setCurrentChannel: (channel: Channel) => set(() => ({ channel })),
@@ -41,6 +50,7 @@ interface ServerState {
   channelGroups: ChannelGroup[];
   channels: Channel[];
   setCurrentServer: (s: Server) => void;
+  setChannels: (c: Channel[]) => void;
 }
 
 const defaultServer = myServer;
@@ -53,8 +63,12 @@ export const useServerStore = create<ServerState>((set) => ({
     pic: defaultServer.pic,
   },
   channelGroups: mockChannelGroup,
-  channels: mockChannels,
+  channels: [],
   setCurrentServer: (server: Server) => set(() => ({ server })),
+  setChannels: (channels: Channel[]) => {
+    useChannelStore.setState(() => ({ channel: channels[1] }));
+    set(() => ({ channels }));
+  },
 }));
 
 type ToggleableUI = "showMemberTab" | "showSidebar";

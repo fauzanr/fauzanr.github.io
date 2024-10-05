@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import Chat from "./Chat";
 import { cn } from "@/lib/utils";
 import { useChannelStore } from "@/data/store";
 
-const Welcome = ({ channel }: { channel: string }) => (
+const Welcome = ({ channel }: { channel: ReactNode }) => (
   <div className="flex flex-col gap-2 px-3 my-10">
     <div className="rounded-full h-16 w-16 bg-gray-700 flex items-center justify-center">
       <i className="ri-hashtag text-wh1 text-4xl"></i>
@@ -14,7 +14,7 @@ const Welcome = ({ channel }: { channel: string }) => (
 );
 
 const ChatRoom = () => {
-  const { id, name, chats } = useChannelStore((state) => state.channel);
+  const { id, name, chats } = useChannelStore((state) => state.channel) || {};
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showContent, setShowContent] = useState(false);
 
@@ -34,7 +34,7 @@ const ChatRoom = () => {
         <span className="mt-auto"></span>
         <Welcome channel={name} />
         <hr className="border-gray-700 mx-2 mb-5" />
-        {chats.map((chat) => (
+        {chats?.map((chat) => (
           <Chat chat={chat} />
         ))}
       </div>

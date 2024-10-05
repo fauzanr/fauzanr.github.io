@@ -45,135 +45,23 @@ export const mockServers: Server[] = [
 
 export const mockChannelGroup: ChannelGroup[] = [
   {
-    id: genID(),
+    id: "9ydm445s8zw",
     name: "MAIN CHANNELS",
     serverId: currentServerId,
   },
   {
-    id: genID(),
-    name: "EXPERIENCES",
+    id: "znutatrjh4",
+    name: "EXPERIENCES & WORK HISTORY",
     serverId: currentServerId,
   },
   {
-    id: genID(),
+    id: "6agxcu5e2",
     name: "TOOLS",
     serverId: currentServerId,
   },
   {
-    id: genID(),
+    id: "iep2ci6zz8l",
     name: "A VERY LONG CHANNEL CATEGORY NAME",
     serverId: currentServerId,
-  },
-];
-
-export const mockChannels: Channel[] = [
-  {
-    id: genID(),
-    name: "welcome👋",
-    channelGroup: mockChannelGroup[0].id,
-    serverId: currentServerId,
-    type: "text",
-    chats: [],
-  },
-  (() => {
-    const channelId = genID();
-    return {
-      id: channelId,
-      name: "intro",
-      channelGroup: mockChannelGroup[0].id,
-      serverId: currentServerId,
-      type: "text",
-      chats: [
-        {
-          id: genID(),
-          username: "fauzanr",
-          channelId,
-          timestamp: new Date(),
-          isAdmin: true,
-          message: "hola",
-        },
-        {
-          id: genID(),
-          username: "fauzanr",
-          channelId,
-          timestamp: new Date(),
-          isAdmin: true,
-          message: "hola",
-        },
-        {
-          id: genID(),
-          username: "fauzanr",
-          channelId,
-          timestamp: new Date(),
-          isAdmin: true,
-          message:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto illo nesciunt quod itaque quia commodi, in ab natus quos totam repudiandae perferendis autem. Nesciunt quae ipsum, ea exercitationem beatae assumenda!",
-        },
-        {
-          id: genID(),
-          username: "fauzanr",
-          channelId,
-          timestamp: new Date(),
-          isAdmin: true,
-          message: "hola",
-        },
-        {
-          id: genID(),
-          username: "fauzanr",
-          channelId,
-          timestamp: new Date(),
-          isAdmin: true,
-          message: "hola",
-        },
-      ],
-    };
-  })(),
-  {
-    id: genID(),
-    name: "other-stuff",
-    channelGroup: mockChannelGroup[0].id,
-    serverId: currentServerId,
-    type: "text",
-    chats: [],
-  },
-  {
-    id: genID(),
-    name: "react",
-    channelGroup: mockChannelGroup[2].id,
-    serverId: currentServerId,
-    type: "text",
-    chats: [],
-  },
-  {
-    id: genID(),
-    name: "nodejs",
-    channelGroup: mockChannelGroup[2].id,
-    serverId: currentServerId,
-    type: "text",
-    chats: [],
-  },
-  {
-    id: genID(),
-    name: "typescript",
-    channelGroup: mockChannelGroup[2].id,
-    serverId: currentServerId,
-    type: "text",
-    chats: [],
-  },
-  {
-    id: genID(),
-    name: "vuejs",
-    channelGroup: mockChannelGroup[2].id,
-    serverId: currentServerId,
-    type: "text",
-    chats: [],
-  },
-  {
-    id: genID(),
-    name: "this-is-a-very-long-channel-name",
-    channelGroup: mockChannelGroup[3].id,
-    serverId: currentServerId,
-    type: "text",
-    chats: [],
   },
 ];
