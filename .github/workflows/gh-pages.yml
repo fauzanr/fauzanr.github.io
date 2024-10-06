@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
 jobs:
   deploy:
@@ -29,7 +29,6 @@ jobs:
       - name: Build
         env:
           DATA_URL: ${{ secrets.DATA_URL }}
-          REPO_NAME: ${{ secrets.REPO_NAME }}
         run: npm install && npm run build
 
       - name: Deploy
