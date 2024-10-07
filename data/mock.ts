@@ -1,5 +1,5 @@
 import { genID } from "@/lib/utils";
-import { Channel, ChannelGroup, Server } from "./types";
+import { ChannelGroup, Server } from "./types";
 
 export const currentServerId = "5ac42f35-6258-48bf-ab07-5ab860208955";
 

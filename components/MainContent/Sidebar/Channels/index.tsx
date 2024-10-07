@@ -79,7 +79,7 @@ const Channels = () => {
         )}
         style={{ background: server.color }}
       >
-        <div className="absolute left-0 right-0 p-2 text-wh1 text-xl font-bold">
+        <div className="absolute left-1 right-1 top-1 p-1 text-wh1 text-xl font-bold [text-shadow:_0_0_0.3rem_#000]">
           {server.name}
         </div>
       </div>
