@@ -8,22 +8,32 @@ const ChannelItem: FCC<{
   Icon?: ReactNode;
   showSettings?: boolean;
   showInvite?: boolean;
+  isActive?: boolean;
   onClick?: () => void;
 }> = ({
   Icon = <i className="ri-hashtag"></i>,
   showInvite,
   showSettings,
+  isActive,
   onClick,
   children,
 }) => {
   return (
-    <Clickable className="group mx-2 my-0.5 px-2 py-1" onClick={onClick}>
+    <Clickable
+      className={cn("group mx-2 my-0.5 px-2 py-1 hover:ba", {
+        "backdrop-brightness-150 hover:backdrop-brightness-150 text-white":
+          isActive,
+      })}
+      onClick={onClick}
+    >
       <div className="flex items-center gap-1">
         <div className="flex-none text-wh2">{Icon}</div>
         <div className="flex-auto overflow-hidden text-nowrap text-ellipsis">
           {children}
         </div>
-        <div className="flex-none hidden group-hover:block">
+        <div
+          className={cn({ "flex-none hidden group-hover:block": !isActive })}
+        >
           {showInvite && (
             <i className="ri-user-add-fill text-wh2 hover:text-wh1"></i>
           )}
@@ -68,6 +78,7 @@ const ChannelGroup: FCC<{ title: string }> = ({ title, children }) => {
 
 const Channels = () => {
   const { channels, channelGroups, server } = useServerStore((state) => state);
+  const currentChannelId = useChannelStore((state) => state.channel?.id);
   const setCurrentChannel = useChannelStore((state) => state.setCurrentChannel);
 
   return (
@@ -99,6 +110,7 @@ const Channels = () => {
                   key={channel.id}
                   showInvite
                   showSettings
+                  isActive={channel.id === currentChannelId}
                   onClick={() => setCurrentChannel(channel)}
                 >
                   {channel.name}

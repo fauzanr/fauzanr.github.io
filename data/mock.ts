@@ -1,10 +1,10 @@
 import { genID } from "@/lib/utils";
 import { ChannelGroup, Server } from "./types";
 
-export const currentServerId = "5ac42f35-6258-48bf-ab07-5ab860208955";
+const myServerId = "5ac42f35-6258-48bf-ab07-5ab860208955";
 
 export const myServer: Server = {
-  id: genID(),
+  id: myServerId,
   name: "Fauzan Rianda",
   color: "",
   pic: "bg-profile-pic",
@@ -47,21 +47,21 @@ export const mockChannelGroup: ChannelGroup[] = [
   {
     id: "9ydm445s8zw",
     name: "MAIN CHANNELS",
-    serverId: currentServerId,
+    serverId: myServerId,
   },
   {
     id: "znutatrjh4",
-    name: "EXPERIENCES & WORK HISTORY",
-    serverId: currentServerId,
+    name: "EXPERIENCES & WORK HISTORY 💼",
+    serverId: myServerId,
   },
   {
     id: "6agxcu5e2",
-    name: "TOOLS",
-    serverId: currentServerId,
+    name: "TOOLS 💻🛠️",
+    serverId: myServerId,
   },
   {
     id: "iep2ci6zz8l",
-    name: "A VERY LONG CHANNEL CATEGORY NAME",
-    serverId: currentServerId,
+    name: "A VERY LONG CHANNEL CATEGORY NAME 😱",
+    serverId: myServerId,
   },
 ];

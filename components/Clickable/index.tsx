@@ -12,10 +12,11 @@ const Clickable: FCC<{ noBG?: boolean } & HTMLAttributes<HTMLDivElement>> = ({
     <div
       {...rest}
       className={cn(
-        `rounded-md cursor-pointer text-wh2 hover:text-wh1 ${className}`,
+        `rounded-md cursor-pointer text-wh2 hover:text-wh1`,
         {
           "hover:backdrop-brightness-125": !noBG,
-        }
+        },
+        className
       )}
     >
       {children}
