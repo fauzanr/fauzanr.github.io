@@ -3,7 +3,7 @@ import Chat from "./Chat";
 import { cn } from "@/lib/utils";
 import { useChannelStore } from "@/data/store";
 
-const SIMPLIFIED_CHAT_DELAY = 5 * 1000;
+const TXT_ONLY_CHAT_DELAY = 5 * 1000;
 
 const Welcome = ({ channel }: { channel: ReactNode }) => (
   <div className="flex flex-col gap-2 px-3 my-10">
@@ -42,7 +42,7 @@ const ChatRoom = () => {
           const textOnly =
             idx !== 0 &&
             chatRef.current.user === chat.username &&
-            time - chatRef.current.time < SIMPLIFIED_CHAT_DELAY;
+            time - chatRef.current.time < TXT_ONLY_CHAT_DELAY;
           chatRef.current.time = time;
           chatRef.current.user = chat.username;
 
