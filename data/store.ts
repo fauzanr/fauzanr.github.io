@@ -85,5 +85,5 @@ export const useUIStore = create<UIState>((set) => ({
   showMemberTab: true,
   showSidebar: true,
   toggleUI: (ui: ToggleableUI, value?: boolean) =>
-    set((state) => ({ [ui]: typeof value === "boolean" ? value : !state[ui] })),
+    set((state) => ({ [ui]: value == null ? !state[ui] : Boolean(value) })),
 }));

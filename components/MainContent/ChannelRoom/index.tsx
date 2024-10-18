@@ -3,10 +3,20 @@ import ChatRoom from "./ChatRoom";
 import Chatbox from "./Chatbox";
 import MemberTab from "./MemberTab";
 import { useChannelStore, useUIStore } from "@/data/store";
+import useIsMobile from "@/lib/hooks";
+import { cn } from "@/lib/utils";
 
 const ChannelRoom = () => {
   const showMemberTab = useUIStore((state) => state.showMemberTab);
   const channel = useChannelStore((state) => state.channel);
+  const toggleUI = useUIStore((state) => state.toggleUI);
+
+  useIsMobile({
+    width: 550,
+    onChange: (isMobile) => {
+      toggleUI("showMemberTab", !isMobile);
+    },
+  });
 
   return (
     <div className="flex h-full bg-bg3">

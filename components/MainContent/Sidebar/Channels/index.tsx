@@ -1,6 +1,6 @@
 import Clickable from "@/components/Clickable";
 import { useChannelStore, useServerStore } from "@/data/store";
-import { FCC } from "@/data/types";
+import { Channel, FCC } from "@/data/types";
 import { cn } from "@/lib/utils";
 import React, { ReactNode, useState } from "react";
 
@@ -76,10 +76,19 @@ const ChannelGroup: FCC<{ title: string }> = ({ title, children }) => {
   );
 };
 
-const Channels = () => {
+type Props = {
+  onSelectChannel?: () => void;
+};
+
+const Channels = ({ onSelectChannel }: Props) => {
   const { channels, channelGroups, server } = useServerStore((state) => state);
   const currentChannelId = useChannelStore((state) => state.channel?.id);
   const setCurrentChannel = useChannelStore((state) => state.setCurrentChannel);
+
+  const handleSelectChannel = (channel: Channel) => {
+    setCurrentChannel(channel);
+    onSelectChannel?.();
+  };
 
   return (
     <div className="h-full flex flex-col rounded-tl-lg bg-bg2">
@@ -111,7 +120,7 @@ const Channels = () => {
                   showInvite
                   showSettings
                   isActive={channel.id === currentChannelId}
-                  onClick={() => setCurrentChannel(channel)}
+                  onClick={() => handleSelectChannel(channel)}
                 >
                   {channel.name}
                 </ChannelItem>

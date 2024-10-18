@@ -3,13 +3,11 @@
 import React, { useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
-import Servers from "./Servers";
 import ChannelRoom from "./ChannelRoom";
-import { useServerStore, useUIStore } from "@/data/store";
+import { useServerStore } from "@/data/store";
 import { Channel } from "@/data/types";
 
 const MainContent = ({ channels }: { channels: Channel[] }) => {
-  const showSidebar = useUIStore((state) => state.showSidebar);
   const setChannels = useServerStore((state) => state.setChannels);
 
   useEffect(() => {
@@ -17,13 +15,10 @@ const MainContent = ({ channels }: { channels: Channel[] }) => {
   }, [channels]);
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      <div className="flex-none">
-        <Servers />
-      </div>
-      <div className="flex-auto">
+    <div className="flex h-screen overflow-hidden bg-bg3">
+      <Sidebar />
+      <div className="flex-auto" style={{ transition: "flex-grow 0.5s ease" }}>
         <div className="flex h-full">
-          <div className="flex-none">{showSidebar && <Sidebar />}</div>
           <div className="flex flex-col flex-auto">
             <div className="flex-none">
               <Topbar />
