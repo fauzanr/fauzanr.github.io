@@ -1,5 +1,6 @@
 import Clickable from "@/components/Clickable";
 import { useChannelStore, useUIStore } from "@/data/store";
+import useIsMobile from "@/lib/hooks";
 import React from "react";
 
 const SearchInput = () => (
@@ -18,17 +19,21 @@ const Topbar = () => {
   const channel = useChannelStore((state) => state.channel);
   const { showSidebar, toggleUI } = useUIStore((state) => state);
 
+  const isMobile = useIsMobile({ width: 860 });
+
   return (
     <div className="bg-bg3 h-12 border-bg2 border-b-2 flex items-center px-3">
-      <div className="flex-none">
-        <Clickable noBG onClick={() => toggleUI("showSidebar")}>
-          {showSidebar ? (
-            <i className="ri-menu-fold-3-fill text-wh2 text-2xl mr-2"></i>
-          ) : (
-            <i className="ri-menu-unfold-3-fill text-wh2 text-2xl mr-2"></i>
-          )}
-        </Clickable>
-      </div>
+      {isMobile && (
+        <div className="flex-none">
+          <Clickable noBG onClick={() => toggleUI("showSidebar")}>
+            {showSidebar ? (
+              <i className="ri-menu-fold-3-fill text-wh2 text-2xl mr-2"></i>
+            ) : (
+              <i className="ri-menu-unfold-3-fill text-wh2 text-2xl mr-2"></i>
+            )}
+          </Clickable>
+        </div>
+      )}
       <div className="flex flex-auto items-center">
         {channel?.id && (
           <>
@@ -55,7 +60,7 @@ const Topbar = () => {
           <i className="ri-group-fill text-2xl"></i>
         </Clickable>
 
-        <SearchInput />
+        {!isMobile && <SearchInput />}
 
         <Clickable noBG>
           <i className="ri-inbox-fill text-2xl"></i>
